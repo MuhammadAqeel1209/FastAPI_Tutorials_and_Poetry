@@ -1,0 +1,1 @@
+print("Hello Poetry Project FastApi")
