@@ -1,32 +1,39 @@
 from fastapi import FastAPI,HTTPException
-from enum  import Enum
+from schemas import Bands,GenreURL
 app = FastAPI()
 
-class GenreURL(Enum):
-    ROCK = 'rock'
-    ELECTRONIC = 'electronics'
-    SHOEGAZA = 'shoegaza'
-    HIPHOP =  'hip-hop'
 
 BANDS = [
-    {'Id' : 1,'Name':"The Klinks",'Genre': 'Rock'},
-    {'Id' : 2,'Name':"Alphex Twins",'Genre': 'Electronic'},
-    {'Id' : 3,'Name':"Slowdive",'Genre': 'Shoegaza'},
-    {'Id' : 4,'Name':"Wu Tang Clain",'Genre': 'Hip-Hop'},
+    {'id': 1, 'name': "The Klinks", 'genre': 'Rock'},
+    {'id': 2, 'name': "Alphex Twins", 'genre': 'Electronic'},
+    {
+        'id': 3,
+        'name': "Slowdive",
+        'genre': 'Shoegaza',
+        'album': [
+            {
+                'title': 'First',
+                'releasedDate': '2024-01-01'
+            }
+        ]
+    },
+    {'id': 4, 'name': "Wu Tang Clan", 'genre': 'Hip-Hop'},
 ]
 
+
 @app.get("/bands")
-async def getData() -> list[dict]:
-    return BANDS
+async def getData() -> list[Bands]:
+    return [Bands(**b) for b in BANDS]
+
 
 @app.get("/band/{band_id}")
 async def getSingleBand(band_id : int):
-    band = next((b for b in BANDS if b['Id'] == band_id),None)
+    band = next((Bands(**b) for b in BANDS if b['id'] == band_id),None)
     if band is None:
         raise HTTPException(status_code=404,detail="Not Found")
     return band
 
 @app.get("/band/genre/{band_genre}")
 async def getSingleBand(band_genre : GenreURL):
-    return [b for b in BANDS if b['Genre'].lower() == band_genre.value]
+    return [Bands(**b) for b in BANDS if b['genre'].lower() == band_genre.value]
   
