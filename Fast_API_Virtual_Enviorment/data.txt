@@ -1,2 +1,9 @@
+
+FastAPI #1 Installation / API Routes / Swagger Docs
+FastAPI #2 - Path Parameters / Data Validation with Type-Hints & Enums
+
 FastAPI and Pydantic - Model Classes and Nested Models
 FastAPI and Pydantic - URL Query Parameters for Filtering
+FastAPI - Request Body and POST requests | Pydantic pre-validators
+
+
