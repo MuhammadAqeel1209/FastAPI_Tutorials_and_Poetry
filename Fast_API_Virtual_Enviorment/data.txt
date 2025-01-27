@@ -1,0 +1,2 @@
+FastAPI and Pydantic - Model Classes and Nested Models
+FastAPI and Pydantic - URL Query Parameters for Filtering

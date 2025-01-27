@@ -22,8 +22,15 @@ BANDS = [
 
 
 @app.get("/bands")
-async def getData() -> list[Bands]:
-    return [Bands(**b) for b in BANDS]
+async def getData(has_album : bool = False,genre:GenreURL|None = None) -> list[Bands]:
+    band_List =  [Bands(**b) for b in BANDS]
+    if has_album:
+        band_List = [band for band in band_List if 'album' in band]
+        
+    if genre:
+        band_List = [band for band in band_List if band['genre'].lower() == genre.value] 
+        
+    return band_List  
 
 
 @app.get("/band/{band_id}")
