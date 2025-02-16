@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "order"
+version = "0.1.0"
+description = ""
+authors = ["Muhammad Aqeel <104295133+Aqeel785@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+psycopg2-binary = "*"
+python = "^3.12"
+fastapi = "^0.111.1"
+supabase = "^2.5.3"
+sqlmodel = "^0.0.21"
+psycopg2 = "^2.9.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
